@@ -27,12 +27,5 @@ public class Main {
         userDao.cleanUsersTable();
         userDao.dropUsersTable();
 
-
-        try  (Connection connection = Util.getConnection()){
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
     }
 }
