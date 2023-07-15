@@ -21,6 +21,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     " name VARCHAR(80)," +
                     " lastname VARCHAR(80)," +
                     " age INT)");
+            Util.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -30,6 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP TABLE IF EXISTS tableusers");
+            Util.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,6 +47,7 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
             preparedStatement.executeUpdate();
+            Util.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,6 +61,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
+            Util.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,6 +82,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 user.setId(resultSet.getLong("id"));
                 users.add(user);
             }
+            Util.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,6 +92,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void cleanUsersTable() {
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate("TRUNCATE TABLE tableusers");
+            Util.getConnection().close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
